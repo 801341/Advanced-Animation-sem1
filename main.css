@@ -1,26 +1,31 @@
-head{
-  text-align: center;
-  color: white;
-  font-style: oblique;
-  font-size: 200%;
+body {
+   background-color: #013135;
+   margin:0;
+ }
 
-}
-h1 {
-  font-size: 150%;
-}
-
-h2 {
-  font-size: 150%;
-}
-
-p {
-  font-size: 150%;
+#wrapperDiv {
+ width:1100px;
+ height:800px;
+ margin:auto;
+ margin-top: 20px;
+ background-color:yellow;
+ border: 5px solid black;
 }
 
-body{
-  text-align: center;
-  background-color: pink;
-  color: white;
-  font-size: 250%;
+#canvas {
+    border: solid black 2px;
+    background-color: rgba(0,0,0, .95);
+}
 
+
+.tile{
+  float:left;
+  padding:20px;
+  width:45px;
+  height:35px;
+  margin-left: 80px;
+  margin-top: 10px;
+  background-color: #d5dee0;
+  border-radius: 100%;
+  border: solid black 2px;
 }
