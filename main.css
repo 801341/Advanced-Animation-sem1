@@ -1,25 +1,15 @@
-body {
+body{
    background-color: #013135;
    margin:0;
  }
-
-#wrapperDiv {
- width:1100px;
- height:800px;
+#wrapperDiv{  id wrapperDiv
+ height: 600px;
+ width: 700px;
  margin:auto;
  margin-top: 20px;
- background-color:yellow;
- border: 5px solid black;
 }
-
-#canvas {
-    border: solid black 2px;
-    background-color: rgba(0,0,0, .95);
-}
-
-
 .tile{
-  float:left;
+  float: left;
   padding:20px;
   width:45px;
   height:35px;

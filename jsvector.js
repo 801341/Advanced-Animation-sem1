@@ -10,9 +10,10 @@ function JSVector(x = 0,y = 0){
 // Set the magnitude of the vector,
 // retaining the angle (direction).
 JSVector.prototype.setMagnitude = function(mag){
-  let Dir = this.getDirection();
+  let direction = this.getDirection();
   this.x = Math.cos(angle) * mag;
   this.y = Math.sin(angle) * mag;
+  return this;
 }
 
 // Get the magnitude of the vector using pythagorean theorem
@@ -24,8 +25,8 @@ JSVector.prototype.getMagnitude = function(){
 // Set the angle (direction) of the vector,
 // retaining the magnitude.
 JSVector.prototype.setDirection = function(angle){
-  let Mag = this.getMagnitude();
-  this.x = Math.cos(angle) * mag;
+  let mag = this.getMagnitude();
+  this.x = Math.cos(angle) * mag; // direction
   this.y = Math.sin(angle) * mag;
 }
 
@@ -76,14 +77,15 @@ JSVector.prototype.normalize = function(){
 // Limit the magnitude of this vector
 JSVector.prototype.limit = function(lim){
   this.normalize();
-  this.multiply(lim);
+  this.multiply(Math.min(this.magnitude(), lim));
+  return this;
 }
 
 // Get the distance between this vector and another one
 JSVector.prototype.distance = function(v2){
   let xDis = this.x - v2.x;
   let yDis = this.y - v2.y;
-  return(math.sqrt(math.pow(yDis,2) + math.pow(yDis,2)));
+  return(Math.sqrt(Math.pow(yDis,2) + Math.pow(yDis,2)));
 }
 
 // Get square of the distance between this vector and another one
@@ -97,22 +99,41 @@ JSVector.prototype.distanceSquared = function(v2){
 //                           |  sin   +cos|
 
 JSVector.prototype.rotate = function(angle) {
-
+  let x = this.x, y = this.y;
+  let cos = Math.cos(angle);
+  let sin = Math.sin(angle);
+  this.x = x * cos - y * sin;
+  this.x = x * sin + y * sin;
+  return(this);
 }
 
 // Get the angle between this vector and another one
 JSVector.prototype.angleBetween = function(v2){
-  let Ang  = (this.x * v2.x) + (this.y * v2.y);
-  return(acos(Ang/(this.vector*v2)));
+  let ang  = (this.x * v2.x) + (this.y * v2.y);
+  return(acos(ang/(this.vector*v2)));
 }
 
 // Make a copy of this vector
 JSVector.prototype.copy = function(){
-  let v3 = new vector(this.x, this.y);
+  return(new JSvector(this.x, this.y);
 }
 
 // Override inherited toString() to describe this instance
 JSVector.prototype.toString = function() {
+  let x = this.x.toFixed(2);
+  let y = this.y.toFixed(2);
+  let mag = this.getMagnitude().toFixed(2);
+  let dir = this.getDirection().toFixed(2);
+  return("x: " + x + "y: " + y + "mag: " + mag + "dir: " + dir);
+}
 
+this.retraction = function(v1, v2){
+    this.acc = JSvector.subGetNow(v1.loc, v2.loc);
+    this.acc.normalize();
+    this.acc.mult(0.05);
+    this.vel.limit(3);
+    this.loc.add(this.vel)
 
 }
+
+this.repulsion = function(x, y)
