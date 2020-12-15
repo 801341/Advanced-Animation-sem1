@@ -37,7 +37,25 @@ Mover.prototype.update = function() {
     this.vel.add(this.acc);
     this.vel.limit(3);
     this.loc.add(this.vel);
+
+    if (this !== game.boids[0]) {
+      let d = this.loc.distance(game.boids[0].loc);
+      if (d < 100) {
+        this.acc = JSVector.subGetNew(this.loc, game.boids[0].loc); // switch parameters to make it retraction or repulsion
+        this.acc.normalize();
+        this.acc.multiply(0.05);
+      }
+    }
   }
+
+
+
+  // if (!game.gamePaused) {
+  //   this.vel.add(this.acc);
+  //   this.vel.limit(3);
+  //   this.loc.add(this.vel);
+  // }
+
 
 //   this.lifeSpan--;
 //   if(this.lifeSpan === 0) {
@@ -57,6 +75,7 @@ Mover.prototype.update = function() {
 //       count++;
 //    }
 //}
+
   //this.lifeSpan--;
  //  if(this.lifeSpan === 0) {
  //    this.isDead = true;
